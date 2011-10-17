@@ -19,21 +19,7 @@ $(function(){
         order: Todos.nextOrder()
       };
     },
-
-    initialize: function() {
-      this.bind("error", this.displayError);
-    },
-
-    displayError: function(model, error) {
-      alert(error);
-    },
-
-    validate: function(attrs) {
-      if (attrs.text === "profanity") {
-        return "keep it clean please";
-      }
-    },
-
+ 
     // Toggle the `done` state of this todo item.
     toggle: function() {
       this.save({done: !this.get("done")});
@@ -100,7 +86,6 @@ $(function(){
     // The DOM events specific to an item.
     events: {
       "click .check"              : "toggleDone",
-      "click .todo-destroy"       : "clear"
     },
 
     // The TodoView listens for changes to its model, re-rendering.
@@ -134,10 +119,6 @@ $(function(){
       $(this.el).remove();
     },
 
-    clear: function() {
-      this.model.destroy();
-    },
-
   });
 
   // The Application
@@ -149,10 +130,6 @@ $(function(){
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
     el: $("#todoapp"),
-
-    events: {
-      'keypress #new-todo': 'createOnEnter'
-    },
 
     // At initialization we bind to the relevant events on the `Todos`
     // collection, when items are added or changed. Kick things off by
@@ -182,31 +159,6 @@ $(function(){
     },
  
     // put the createOnEnter fn here
-    createOnEnter: function(e) {
-      var text = this.input.val();
-      if (!text || e.keyCode !== 13) return;
-      Todos.create({text: text});
-      this.input.val('');
-    },
+
   });
-
-  window.appRouter = Backbone.Router.extend({
-    routes: {
-      '': 'home',
-      "page/:id": "showPage"
-    },
-
-    home: function() {
-      // Finally, we kick things off by creating the **App**.
-      window.App = new AppView;
-    },
-
-    showPage: function(id) {
-      alert("the page is " + id);
-    },
-  });
-
-  new window.appRouter();
-  Backbone.history.start();
-
 });
