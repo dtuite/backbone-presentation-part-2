@@ -83,15 +83,8 @@ $(function(){
     // Cache the template function for a single item.
     template: _.template($('#item-template').html()),
 
-    // The DOM events specific to an item.
-    events: {
-      "click .check"              : "toggleDone",
-    },
-
     // The TodoView listens for changes to its model, re-rendering.
     initialize: function() {
-      this.model.bind('change', this.render, this);
-      this.model.bind('destroy', this.remove, this);
     },
 
     // Re-render the contents of the todo item.
@@ -107,11 +100,6 @@ $(function(){
       var text = this.model.get('text');
       this.$('.todo-text').text(text);
       this.input = this.$('.todo-input');
-    },
-
-    // Toggle the `"done"` state of the model.
-    toggleDone: function() {
-      this.model.toggle();
     },
 
     // Remove this view from the DOM.

@@ -1,10 +1,8 @@
 # Second BackboneJS Presentation
 
 **Instructions**  
-```
-git clone git@github.com:dtuite/backbone-presentation-part-2.git
-cd Backbone-presentation-part-2/
-```
+    git clone git@github.com:dtuite/backbone-presentation-part-2.git
+    cd Backbone-presentation-part-2/
 
 ## Talk about this stuff
 
@@ -18,9 +16,24 @@ cd Backbone-presentation-part-2/
 
 **What we want to cover this month**
 
-  * Sync, View Events, Validations, Routers
-  * Show the finished Todo app
-  * Quickly run through Todo.js with a foray into the localstorage file
+ * Sync, View Events, Validations, Routers
+ * Show the finished Todo app
+ * Quickly run through (the stripped) Todo.js with a foray into the localstorage file
 
 **View Events**  
 
+ - Add the createOnEnter event to the app view
+ - Add the removal event to the todoView
+ - Remember to bind to the events
+ - Add the toggle event to the todoView
+
+**Validations**
+
+ - Add validation to the todo model along with a method to handle it
+
+**Routing**
+
+ - Create a router for the app
+ - Create a second route which takes a param
+
+**Finish**
