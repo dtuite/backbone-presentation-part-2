@@ -190,7 +190,23 @@ $(function(){
     },
   });
 
-  // Finally, we kick things off by creating the **App**.
-  window.App = new AppView;
+  window.appRouter = Backbone.Router.extend({
+    routes: {
+      '': 'home',
+      "page/:id": "showPage"
+    },
+
+    home: function() {
+      // Finally, we kick things off by creating the **App**.
+      window.App = new AppView;
+    },
+
+    showPage: function(id) {
+      alert("the page is " + id);
+    },
+  });
+
+  new window.appRouter();
+  Backbone.history.start();
 
 });
