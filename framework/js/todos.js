@@ -20,6 +20,20 @@ $(function(){
       };
     },
 
+    initialize: function() {
+      this.bind("error", this.displayError);
+    },
+
+    displayError: function(model, error) {
+      alert(error);
+    },
+
+    validate: function(attrs) {
+      if (attrs.text === "profanity") {
+        return "keep it clean please";
+      }
+    },
+
     // Toggle the `done` state of this todo item.
     toggle: function() {
       this.save({done: !this.get("done")});
@@ -86,7 +100,7 @@ $(function(){
     // The DOM events specific to an item.
     events: {
       "click .check"              : "toggleDone",
-      "click span.todo-destroy"   : "clear",
+      "click .todo-destroy"       : "clear"
     },
 
     // The TodoView listens for changes to its model, re-rendering.
@@ -120,10 +134,9 @@ $(function(){
       $(this.el).remove();
     },
 
-    // Remove the item, destroy the model.
     clear: function() {
       this.model.destroy();
-    }
+    },
 
   });
 
@@ -136,6 +149,10 @@ $(function(){
     // Instead of generating a new element, bind to the existing skeleton of
     // the App already present in the HTML.
     el: $("#todoapp"),
+
+    events: {
+      'keypress #new-todo': 'createOnEnter'
+    },
 
     // At initialization we bind to the relevant events on the `Todos`
     // collection, when items are added or changed. Kick things off by
@@ -162,6 +179,14 @@ $(function(){
     // Add all items in the **Todos** collection at once.
     addAll: function() {
       Todos.each(this.addOne);
+    },
+ 
+    // put the createOnEnter fn here
+    createOnEnter: function(e) {
+      var text = this.input.val();
+      if (!text || e.keyCode !== 13) return;
+      Todos.create({text: text});
+      this.input.val('');
     },
   });
 
