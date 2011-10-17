@@ -137,11 +137,6 @@ $(function(){
     // the App already present in the HTML.
     el: $("#todoapp"),
 
-    // Delegated events for creating new items, and clearing completed ones.
-    events: {
-      "keypress #new-todo":  "createOnEnter",
-    },
-
     // At initialization we bind to the relevant events on the `Todos`
     // collection, when items are added or changed. Kick things off by
     // loading any preexisting todos that might be saved in *localStorage*.
@@ -167,15 +162,6 @@ $(function(){
     // Add all items in the **Todos** collection at once.
     addAll: function() {
       Todos.each(this.addOne);
-    },
-
-    // If you hit return in the main input field, and there is text to save,
-    // create new **Todo** model persisting it to *localStorage*.
-    createOnEnter: function(e) {
-      var text = this.input.val();
-      if (!text || e.keyCode != 13) return;
-      Todos.create({text: text});
-      this.input.val('');
     },
   });
 
