@@ -42,11 +42,13 @@ $(function(){
 
     // Filter down the list of all todo items that are finished.
     done: function() {
+      // Looks through each value in the list, returning an array of all the values that pass a truth test
       return this.filter(function(todo){ return todo.get('done'); });
     },
 
     // Filter down the list to only todo items that are still not finished.
     remaining: function() {
+      // Returns a copy of the array with all instances of the values removed
       return this.without.apply(this, this.done());
     },
 
@@ -58,6 +60,8 @@ $(function(){
     },
 
     // Todos are sorted by their original insertion order.
+    // comparators are used to maintain order in a collection
+    // this comparator orders todo's based on the value of the 'order' attribute
     comparator: function(todo) {
       return todo.get('order');
     }
