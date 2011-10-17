@@ -86,9 +86,7 @@ $(function(){
     // The DOM events specific to an item.
     events: {
       "click .check"              : "toggleDone",
-      "dblclick div.todo-text"    : "edit",
       "click span.todo-destroy"   : "clear",
-      "keypress .todo-input"      : "updateOnEnter"
     },
 
     // The TodoView listens for changes to its model, re-rendering.
@@ -110,29 +108,11 @@ $(function(){
       var text = this.model.get('text');
       this.$('.todo-text').text(text);
       this.input = this.$('.todo-input');
-      this.input.bind('blur', _.bind(this.close, this)).val(text);
     },
 
     // Toggle the `"done"` state of the model.
     toggleDone: function() {
       this.model.toggle();
-    },
-
-    // Switch this view into `"editing"` mode, displaying the input field.
-    edit: function() {
-      $(this.el).addClass("editing");
-      this.input.focus();
-    },
-
-    // Close the `"editing"` mode, saving changes to the todo.
-    close: function() {
-      this.model.save({text: this.input.val()});
-      $(this.el).removeClass("editing");
-    },
-
-    // If you hit `enter`, we're through editing the item.
-    updateOnEnter: function(e) {
-      if (e.keyCode == 13) this.close();
     },
 
     // Remove this view from the DOM.
@@ -163,8 +143,6 @@ $(function(){
     // Delegated events for creating new items, and clearing completed ones.
     events: {
       "keypress #new-todo":  "createOnEnter",
-      "keyup #new-todo":     "showTooltip",
-      "click .todo-clear a": "clearCompleted"
     },
 
     // At initialization we bind to the relevant events on the `Todos`
@@ -210,25 +188,6 @@ $(function(){
       Todos.create({text: text});
       this.input.val('');
     },
-
-    // Clear all done todo items, destroying their models.
-    clearCompleted: function() {
-      _.each(Todos.done(), function(todo){ todo.destroy(); });
-      return false;
-    },
-
-    // Lazily show the tooltip that tells you to press `enter` to save
-    // a new todo item, after one second.
-    showTooltip: function(e) {
-      var tooltip = this.$(".ui-tooltip-top");
-      var val = this.input.val();
-      tooltip.fadeOut();
-      if (this.tooltipTimeout) clearTimeout(this.tooltipTimeout);
-      if (val == '' || val == this.input.attr('placeholder')) return;
-      var show = function(){ tooltip.show().fadeIn(); };
-      this.tooltipTimeout = _.delay(show, 1000);
-    }
-
   });
 
   // Finally, we kick things off by creating the **App**.

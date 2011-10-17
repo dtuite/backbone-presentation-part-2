@@ -39,10 +39,6 @@
 
     </div>
 
-    <ul id="instructions">
-      <li>Double-click to edit a todo.</li>
-    </ul>
-
     <div id="credits">
       Created by
       <br />
@@ -58,9 +54,6 @@
           <div class="todo-text"></div>
           <span class="todo-destroy"></span>
         </div>
-        <div class="edit">
-          <input class="todo-input" type="text" value="" />
-        </div>
       </div>
     </script>
 
@@ -69,14 +62,6 @@
         <span class="todo-count">
           <span class="number"><%= remaining %></span>
           <span class="word"><%= remaining == 1 ? 'item' : 'items' %></span> left.
-        </span>
-      <% } %>
-      <% if (done) { %>
-        <span class="todo-clear">
-          <a href="#">
-            Clear <span class="number-done"><%= done %></span>
-            completed <span class="word-done"><%= done == 1 ? 'item' : 'items' %></span>
-          </a>
         </span>
       <% } %>
     </script>
