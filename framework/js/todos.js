@@ -149,4 +149,6 @@ $(function(){
     // put the createOnEnter fn here
 
   });
+
+  var window.App = new AppView();
 });
