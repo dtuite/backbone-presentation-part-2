@@ -1,8 +1,10 @@
 # Second BackboneJS Presentation
 
 **Instructions**  
-    git clone git@github.com:dtuite/backbone-presentation-part-2.git
-    cd backbone-presentation-part-2/
+```
+  git clone git@github.com:dtuite/backbone-presentation-part-2.git
+  cd backbone-presentation-part-2/
+```
 
 ## Talk about this stuff
 
