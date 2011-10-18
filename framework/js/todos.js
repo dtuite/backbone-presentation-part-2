@@ -150,5 +150,5 @@ $(function(){
 
   });
 
-  var window.App = new AppView();
+  window.App = new AppView();
 });
